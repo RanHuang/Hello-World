@@ -2,12 +2,13 @@
 #define MYFUNC_H
 #include <stdlib.h>
 #include <stdio.h>
-#define DEBUG 0
+#define DEBUG 1
 #if DEBUG
 #define PRINTF(...) printf(__VA_ARGS__)
 #else 
 #define PRINTF(...)
 #endif
+#define MAX_SIZE 20
 void swap(int *x, int *y)
 {/*Both parameters are pointers to ints.*/
     int tmp = *x;
