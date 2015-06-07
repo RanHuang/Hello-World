@@ -15,6 +15,8 @@ void integerSwap(int *m, int *n);
 int gcdLoop(int m, int n);
 int gcdRecursion(int m, int n);
 
+void printInteger(int *a, int n, int m);
+
 int getInteger(char *str)
 {
 	int n;
@@ -60,4 +62,14 @@ int gcdRecursion(int m, int n)
 	else return gcdRecursion(n, r);
 }
 
+void printInteger(int *a, int n, int m)
+{
+	int i;
+	for(i=0; i<n; ){
+		printf("%d\t", a[i++]);
+		if(i%m == 0) 
+			puts("\n");
+	}
+	puts("\n");
+}
 #endif

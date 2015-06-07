@@ -1,0 +1,15 @@
+.out
+tags
+tmp/
+*.swp
+
+/out
+
+# various stuff that VC++ produces/uses
+Debug/
+Release/
+
+# build/release artifacts
+/*.tar.gz
+/SHASUMS*.txt*
+
