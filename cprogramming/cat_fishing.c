@@ -115,11 +115,98 @@ void pop(StackP s){
 
 void stackTest();
 void queueTest();
+void initialize(QueueP a, QueueP b, StackP c);
+
 int main()
 {
-	queueTest();
-	stackTest();
+	Queue Alice, Bob;
+	Stack desk;
+	int board;
+	int book[16]={0};
+	int count = 0; //出牌计数，避免出现死循环
+	initialize(&Alice, &Bob, &desk);
+	while(!(isQueueEmpty(&Alice) || isQueueEmpty(&Bob)) && count<10000){
+		count++;
+		//Alice 出牌
+		board = frontOfQueue(&Alice);
+		dequeue(&Alice);
+		if(book[board] == 0){
+			push(&desk, board);
+			book[board] = 1;
+		}else{
+			enqueue(&Alice, board);
+			while(topOfStack(&desk) != board){
+				book[topOfStack(&desk)] = 0;
+				enqueue(&Alice, topOfStack(&desk));
+				pop(&desk);
+			}
+			book[topOfStack(&desk)] = 0;
+			enqueue(&Alice, topOfStack(&desk));
+			pop(&desk);
+		}
+		if(isQueueEmpty(&Alice)) break; //Alice has no board, she wins.
+		//Bob 出牌
+		board = frontOfQueue(&Bob);
+		dequeue(&Bob);
+		if(book[board] == 0){
+			push(&desk, board);
+			book[board] = 1;
+		}else{
+			enqueue(&Bob, board);
+			while(topOfStack(&desk) != board){
+				book[topOfStack(&desk)] = 0;
+				enqueue(&Bob, topOfStack(&desk));
+				pop(&desk);
+			}
+			book[topOfStack(&desk)] = 0;
+			enqueue(&Bob, topOfStack(&desk));
+			pop(&desk);
+		}
+		if(isQueueEmpty(&Bob)) break; //Bob has no board, he wins.
+	}
+	//Result
+	if(isQueueEmpty(&Alice)){
+		puts("\tAlice wins!");
+	}else if(isQueueEmpty(&Bob)){
+		puts("\t Bob wins!");
+	}else{
+		printf("After %d round, nobody wins.\n", count);
+	}
+	
+	//Print
+	printf("Alice: ");
+	while(!isQueueEmpty(&Alice)){
+		printf("%d ", frontOfQueue(&Alice));
+		dequeue(&Alice);
+	}
+	printf("\nBob: ");
+	while(!isQueueEmpty(&Bob)){
+		printf("%d ", frontOfQueue(&Bob));
+		dequeue(&Bob);
+	}
+	printf("\nThe Desktop(Reverse order): ");
+	
+	while(!isStackEmpty(&desk)){
+		printf("%d ", topOfStack(&desk));
+		pop(&desk);
+	}
+	puts("\n");
+
 	return 0;
+}
+
+void initialize(QueueP a, QueueP b, StackP c)
+{
+	int x[10] = {2, 4, 1, 2, 5 ,6};
+	int y[10] = {3, 1, 3, 5, 6, 4};
+	int i;
+	createQueue(a, 20);
+	createQueue(b, 20);
+	createStack(c, 20);
+	for(i=0; i<QUEUESIZE && i<6; i++){
+		enqueue(a, x[i]);
+		enqueue(b, y[i]);
+	}
 }
 void stackTest()
 {
