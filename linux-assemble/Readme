@@ -1,0 +1,25 @@
+学习
+#《深入理解程序设计：使用Linux汇编语言》 [美] Jonathan Bartlett
+书中示例代码以及相关读书笔记记录
+
+引言
+#Donald Knuth这样描述编程：编程并非告诉计算机如何做某事，而是告诉人们程序员如何指示计算机做某事。这里的关键在于：程序不仅是给计算机看的，更是给人看的。
+#
+
+深入学习
+#计算机最少需要几种寻址方式？
+#为什么实现一些不常用的寻址方式？
+#研究并描述流水线（或其他复杂因素）如何影响读取-执行周期
+#研究并描述如何在固定长度指令和可变长度指令间取得折中
+
+学无止境 勤学不缀
+#Alan Perlis:"不会影响你编程思维的语言不值得学习"
+#@自顶向下
+	《深入理解程序设计》，Jonathan Barlett
+	《算法导论》，Thomas H.Cormen, Charles E.Leiserson, Ronald L.Rivest
+	《计算机程序设计艺术》, Donald Knuth
+	《Programming Languages》, Samuel N.Kamin
+	《现代操作系统》, Andrew Tanenbaum
+	《链接器和加载器》, John Levine
+	《计算机组织与设计：硬件/软件接口》, David Patterson, John Hennessy
+#@自顶向下
