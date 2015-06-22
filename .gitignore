@@ -1,7 +1,9 @@
 *.out
+*.o
 tags
 tmp/
 *.swp
+*.dat
 
 /out
 
