@@ -87,7 +87,7 @@ loop_file_read:
 	popl %eax
 	addl $4, %esp
 	#将缓冲区内容写入文件
-	movl %eax, %ebx
+	movl %eax, %edx  #缓冲区大小
 	movl $SYS_WRITE, %eax
 	movl ST_FD_OUT(%ebp), %ebx
 	movl $buffer, %ecx
@@ -98,11 +98,11 @@ loop_file_read:
 end_loop_file_read:
 #close file
 	movl $SYS_CLOSE, %eax
-	movl ST_FD_OUT(%ebx), %ebx
+	movl ST_FD_OUT(%ebp), %ebx
 	int $LINUX_SYSCALL
 
 	movl $SYS_CLOSE, %eax
-	movl ST_FD_IN(%ebx), %ebx
+	movl ST_FD_IN(%ebp), %ebx
 	int $LINUX_SYSCALL
 #exit
 	movl $SYS_EXIT, %eax 
@@ -182,3 +182,7 @@ end_convert2upper:
 #@@.bss段，不占用可执行程序空间，保留存储位置；
 #	.section .bss
 #	.lcomm buffer, 500
+
+#@@调试程序
+# as --gstabs program.s -o program.o  使用STAB调试格式
+# gdb ./program
