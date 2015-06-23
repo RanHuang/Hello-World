@@ -4,3 +4,5 @@ ld modify_records.o record-read.o record-write.o -o modify_records
 
 GDB调试编译:
 	as --gstabs program.s -o program.o
+ld modify_records.o record-read.o record-write.o error-exit.o count-chars.o print-newline.o -o modify_records
+

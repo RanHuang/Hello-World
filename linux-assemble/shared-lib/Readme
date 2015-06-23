@@ -1,0 +1,36 @@
+使用动态链接库编译程序
+ld -dynamic-linker /lib/ld-linux.so.2 -o helloworld_lib helloworld_lib.o -lc
+
+-lc:链接C库,GNU/Linux系统上文件名为 libc.so。
+-dynamic-linker /lib/ld-linux.so.2 :该程序用来加载外部库并链接到程序（动态链接器）
+链接器标准目录：/etc/ld.so.conf  LD_LIBRARY_PATH(系统上不存在文件和环境变量值)
+查看程序依赖的链接库：
+$ldd ./helloworld_lib
+	linux-gate.so.1 =>  (0xb76e7000)
+	libc.so.6 => /lib/i386-linux-gnu/libc.so.6 (0xb752e000)
+	/lib/ld-linux.so.2 (0xb76e8000)
+
+了解库文档，可以查阅用户手册和网站中的信息页
+
+ld -dynamic-linker /lib/ld-linux.so.2 -lc helloworld_lib.o -o helloworld_lib
+
+
+##$$关于C标准库的相关资料
+	http://www.gnu.org/software/libc/manual
+
+
+##$$创建共享库：
+1.正常汇编各个源码文件
+	$as prgram.s -o program.o
+2.将目标文件链接为共享库
+	$ld -shared record-read.o record-write.o -o librecord.so
+3.使用共享库链接目标文件
+	$ld -dynamic-linker /lib/ld-linux.so.2 -L . -lrecord write_records.o -o write_records_dl
+4.将当期目录添加到动态链接器的搜索路径
+	$export LD_LIBRARY_PATH=.
+5.执行程序
+./write_records_dl
+
+相关资料：
+1.ld.so 用户手册，关于Linux动态链接器工作原理
+2.
