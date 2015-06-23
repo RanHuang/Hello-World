@@ -2,6 +2,20 @@
 #《深入理解程序设计：使用Linux汇编语言》 [美] Jonathan Bartlett
 书中示例代码以及相关读书笔记记录
 
+Documentation for binutils 2.25
+   https://sourceware.org/binutils/docs
+GNU Binutils home page
+   https://sourceware.org/binutils
+ld -- the GNU linker
+as -- the GNU assembler
+
+#获取GCC帮助
+	$gcc -S program.c
+	输出汇编语言至program.s文件中，使用 -O0关闭优化；
+#GDB调试器
+	$as --gstabs program.s -o program.o
+	使用STAB调试格式
+
 引言
 #Donald Knuth这样描述编程：编程并非告诉计算机如何做某事，而是告诉人们程序员如何指示计算机做某事。这里的关键在于：程序不仅是给计算机看的，更是给人看的。
 #
@@ -11,6 +25,70 @@
 #为什么实现一些不常用的寻址方式？
 #研究并描述流水线（或其他复杂因素）如何影响读取-执行周期
 #研究并描述如何在固定长度指令和可变长度指令间取得折中
+
+第7章 开发健壮的程序
+    需要自律与刻苦：通常需要寻找每一个可能发生的问题，并为程序采取应对计划。
+技巧：
+1.用户测试；
+2.数据测试；（极端案例：0，1，预期范围内一个数字，超出预期一个数字，预期范围内第一个和最后一个数字，低于预期范围的第一个数字，高于预期范围的第一个数字）
+C语言assert宏，可再编译时关闭断言
+3.模块测试
+    驱动程序和存根小函数
+错误处理
+与修复相比，试图诊断出了什么问题导致更多的问题。因此仅通过报告错误代码和消息，让用户通过不同的资源进行故障排除是更好的做法。
+
+第11章 高级语言
+
+语言只是工具，程序员不应该惧怕使用学习和使用新的工具。
+
+每个语言都各有千秋，懂得的语言越多，就越能胜任程序员的工作。
+
+尽可能多地探索感兴趣的语言：C更容易与其他语言交换；Python具有清晰的语法且适用于更直观的解决方案，其跨平台的GUI工具也非常强大；Common Lisp对于愿意学习它的人来说，比其他环境具备更强大、更多的功能。
+C编译分为两个部分：预处理器和主编译器。
+汇编语言与操作系统和硬件平台息息相关，编译语言和解释语言的代码则具有更好的移植性，可以运行在多种操作系统和硬件上。
+#获取GCC帮助
+	$gcc -S program.c
+	输出汇编语言至program.s文件中，使用 -O0关闭优化；
+	leave指令为 movl %ebp, %esp  popl %ebp两跳指令的组合
+
+Perl是一种解释语言，具有一个特点是将字符串作为单个值进行处理（汇编和C语言中字符串是多值序列）；Perl的一个主要优势是处理文本的强大能力和快捷速度。
+
+脚本代码首行说明：
+  #!/usr/bin/perl
+  #!/usr/bin/python
+#!：标识一个解释程序
+/usr/bin/xxx：指定解释器
+
+
+第12章 优化
+强调：除非在极端的情况下，否则代码的可维护性和可读性比优化重要得多。
+
+开发程序必须注意：
+1.对所有事做好文档记录；
+2.确保每一件事按照文档记录完成；
+3.代码以模块的形式编写，易于修改；
+
+一种正确的做事顺序：开发时重点完全放在程序正确性上，将优化视作最后需处理的事。
+
+探查器（profiler）：gprof是标准GNU/Linux分析工作
+
+为了优化函数，需要了解它们的调用和使用方式。
+
+局部优化：针对特定硬件和特定程序优化
+  1.预先计算：对小数据集和需要长时间的计算，存储所有答案
+  2.记住计算结果：缓存或记忆
+  3.局部性原理
+  4.使用寄存器
+  5.内联函数：函数调用设计参数入栈和跳转开销；递归函数不能内联
+  6.优化指令：xorl %eax, %eax 比 movl $0, %eax 更快，前者只访问寄存器不传输任何数据
+  7.寻址方式
+      立即寻址 > 寄存器寻址 > 直接寻址 > 间接寻址 > 基址寻址 > 索引间接寻址
+  8. 数据对齐
+
+全局优化：由结构性优化构成，往往通过结构重组避免性能问题，而不是试图找到解决性能问题的最佳方式
+  1.并行化
+  2.无状态：无状态函数
+
 
 学无止境 勤学不缀
 #Alan Perlis:"不会影响你编程思维的语言不值得学习"
@@ -23,6 +101,41 @@
 	《链接器和加载器》, John Levine
 	《计算机组织与设计：硬件/软件接口》, David Patterson, John Hennessy
 #@自顶向下
-#
+《程序设计方法》 Matthias Felleisen, Robert Bruce Findler
+Simply Scheme: An Introdction ot Computer Science, Brian Harvey, Matthew Wright
+《像计算机科学家一样思考Python》Allen Downey, Jeff Elkner
+《计算机程序的构造和解释》Harold Abelson
+《设计模式：可复用面向对象软件的基础》Erich Gamma
+《算法设计手册》Steve Skiena
+《程序设计语言--实践之路》 Michael Scott
+Why not How: The Rules Approach to Application Development, Chris Date
+Essentials of Programming Langages, Daniel P.Friedman
+#@从中间开始
+《Perl语言编程》, Larry Wall
+Common Lisp: The Language, Guy R.Steele
+ANSI Common Lisp, Paul Graham
+《C程序设计语言》， Brian W.Kernighan, Dennis M.Ritchie
+《C++程序设计语言》, Bjarne Stroustrup
+《Java编程思想》， Bruce Eckel
+The Waite Group's C Primer Plus, Stephen Prata
+The Scheme Programming Language, Kent Dybvig
+Linux Assembly Language Programming, Bob Neveln
+#@专题
+实用编程--《编程珠玑》&续
+数据库--Understanding Relational Databases, Fabian Pascal
+项目管理--《人月神话》
+UNIX编程--《UNIX编程艺术》、《UNIX环境高级编程》
+网络编程--《UNIX网络编程（卷1）：套接字联网API》《UNIX网络编程（卷2）：进程间通信》
+泛型编程--《C++设计新思维--泛型编程与设计模式之应用》
+编译器--《编译程序设计艺术：理论与实践》《高级编译器设计与实现》
+开发流程--《重构：改进既有代码的设计》
+排版--Computers and Typesetting, Downald Knuth
+加密--《应用密码学》, Bruce Schneier
+Linux--Professional Linux Programming， Neil Matthew, Richard Stones
+Linux内核--《Linux设备驱动程序》
+开源编程--The Cathedral and the Bazaar: Musings on Linux and Open Source, Eric S.Raymond
+计算机体系结构--《计算机体系结构：量化研究方法》
+
 #@Other
 《问题求解与编程概念》, Maureen Aprankle 探讨计算机编程中问题解决过程佳作
+
