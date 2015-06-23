@@ -1,0 +1,6 @@
+ld record-read.o read_records.o count-chars.o print-newline.o -o read_records
+ld write_records.o record-write.o -o write_records
+ld modify_records.o record-read.o record-write.o -o modify_records
+
+GDB调试编译:
+	as --gstabs program.s -o program.o

@@ -1,3 +1,5 @@
+.include "linux-system.s"
+.include "record-definition.s"
 # 目的： 
 #	简单地将一些硬编码记录写入磁盘
 # Input：
@@ -6,23 +8,21 @@
 #
 # Variable:
 #
-.include "linux-system.s"
-.include "record-definition.s"
 
 .section .data
 record1:
 	.ascii "Fredrick\0"
-	.rept 31 #每个数据项以空字节（0）填充到适当长度
+	.rept 11 #每个数据项以空字节（0）填充到适当长度
 	.byte 0
 	.endr
 
 	.ascii "Bartlett\0"
-	.rept 31 #填充到40字节
+	.rept 11 #填充到20字节
 	.byte 0
 	.endr
 
 	.ascii "4242 S Prairie\nTulsa, OK 55555\0"
-	.rept 209 #填充到240字节
+	.rept 9 #填充到40字节
 	.byte 0
 	.endr
 
@@ -30,17 +30,17 @@ record1:
 
 record2:
 	.ascii "Marilyn\0"
-	.rept 32 #每个数据项以空字节（0）填充到适当长度
+	.rept 12 #每个数据项以空字节（0）填充到适当长度
 	.byte 0
 	.endr
 
 	.ascii "Taylor\0"
-	.rept 33 #填充到40字节
+	.rept 13 #填充到20字节
 	.byte 0
 	.endr
 
 	.ascii "2242 S Johannan St\nChicago, IL 12345\0"
-	.rept 203 #填充到240字节
+	.rept 3 #填充到40字节
 	.byte 0
 	.endr
 
@@ -48,17 +48,17 @@ record2:
 
 record3:
 	.ascii "Nicolas\0"
-	.rept 32 #每个数据项以空字节（0）填充到适当长度
+	.rept 12 #每个数据项以空字节（0）填充到适当长度
 	.byte 0
 	.endr
 
 	.ascii "McIntire\0"
-	.rept 31 #填充到40字节
+	.rept 11 #填充到20字节
 	.byte 0
 	.endr
 
 	.ascii "500 W Oakland\nSan Diego, CA 54321\0"
-	.rept 206 #填充到240字节
+	.rept 6 #填充到40字节
 	.byte 0
 	.endr
 
