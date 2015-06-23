@@ -4,6 +4,7 @@ tags
 tmp/
 *.swp
 *.dat
+*.tmp
 
 /out
 
