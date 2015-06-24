@@ -6,3 +6,33 @@ GDB调试编译:
 	as --gstabs program.s -o program.o
 ld modify_records.o record-read.o record-write.o error-exit.o count-chars.o print-newline.o -o modify_records
 
+#########################################################################
+memory-manager.s
+#一个Linux程序启动时内存布局，每个程序都在字节的沙盒中运行
+0xbfffffff
+	环境变量
+	…… ……
+	参数N
+	……
+	参数1
+	程序名
+	$变量数目		%esp
+				
+	未映射内存              #栈与.bss段之间的内存无法访问
+					中断
+	程序代码及数据	
+0x0804800
+
+Linux中每个程序际寻址的第一个字节位置--实际指令（.text段）被加载到 0x0804800, .data段紧随其后， 再之后为.bss段；程序可寻址的最后一个字节位置是0xbfffffff，栈从此处开始。
+栈与.bss段之间的内存无法访问，因为此区域的虚拟内存地址还未映射到物理内存地址。中断点是未映射内存的起始处，Linux自动映射通过入栈可访问的内存。
+
+内存以页为单位管理，4096 bytes
+
+45号系统调用brk移动中断点
+
+内存管理器--allocate和dealloocate，操作的内存池通常称为堆;工作方式是记录系统中断以及你已经分配的内存位置，将堆中每块内存标记为“正在使用”和“未使用”。
+
+
+
+
+ld memory_read_records.o  record-read.o count-chars.o print-newline.o memory-manager.o -o modify_records
