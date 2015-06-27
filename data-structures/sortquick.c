@@ -56,7 +56,7 @@ int Partion(int arr[], int low, int high)
 		//小 -> 大，比枢轴小置于前，比枢轴大置于后
 		while(low<high && arr[high]>=pivot) high--; //后 -> 前
 		arr[low] = arr[high];
-		while(low<high && arr[low]<=pivot) low ++; //前 -> 后
+		while(low<high && arr[low]<=pivot) low++; //前 -> 后
 		arr[high]=arr[low];
 	}
 	arr[low]=pivot;
