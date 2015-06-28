@@ -15,43 +15,6 @@ typedef struct edge{
 	int w; //weight of edge
 }Edge;
 
-
-void init(int* array, int n);
-int getRoot(int* array, int alice);
-int merge(int* array, int alice, int bob);
-void quickSort(Edge* arr, int left, int right);
-void testEdgeArr(Edge* arr, int n);
-
-int main(int argc, char* argv[])
-{
-	//测试集，6个顶点，9条边
-	Edge edge_arr[10] = {{0}, {2, 4, 11}, {3, 5, 13}, {4, 6, 3}, {5, 6, 4},
-		{2, 3, 6}, {4, 5, 7}, {1, 2, 1}, {3, 4, 9}, {1, 3, 2}};
-	int edge_root[10] = {0};
-	int m, n;
-	int i, count_edge;
-	int sum_weight;
-
-	m = 6, n = 9;
-	init(edge_root, n);
-
-//	testEdgeArr(edge_arr, n);
-
-	quickSort(edge_arr, 1, n); //根据权值从小到大排序
-
-	sum_weight = 0;
-	for(i=1, count_edge=0; i<=n; i++){
-		if(merge(edge_root, edge_arr[i].u, edge_arr[i].v)){
-			count_edge++;
-			sum_weight += edge_arr[i].w;
-		}
-		if(count_edge >= n-1) break; //生成树边为 n-1，提前结束
-	}
-	printf("Minimum Spanning Tree: Edge - %d, Sum of Wight - %d\n", count_edge, sum_weight);
-
-	return 0;
-}
-
 void testEdgeArr(Edge* arr, int n)
 {
 	int i;
@@ -114,3 +77,34 @@ int  merge(int* array, int alice, int bob)
 	 
 	return 0;
 }
+
+int main(int argc, char* argv[])
+{
+	//测试集，6个顶点，9条边
+	Edge edge_arr[10] = {{0}, {2, 4, 11}, {3, 5, 13}, {4, 6, 3}, {5, 6, 4},
+		{2, 3, 6}, {4, 5, 7}, {1, 2, 1}, {3, 4, 9}, {1, 3, 2}};
+	int edge_root[10] = {0};
+	int m, n;
+	int i, count_edge;
+	int sum_weight;
+
+	m = 6, n = 9;
+	init(edge_root, n);
+
+//	testEdgeArr(edge_arr, n);
+
+	quickSort(edge_arr, 1, n); //根据权值从小到大排序
+
+	sum_weight = 0;
+	for(i=1, count_edge=0; i<=n; i++){
+		if(merge(edge_root, edge_arr[i].u, edge_arr[i].v)){
+			count_edge++;
+			sum_weight += edge_arr[i].w;
+		}
+		if(count_edge >= n-1) break; //生成树边为 n-1，提前结束
+	}
+	printf("Minimum Spanning Tree: Edge - %d, Sum of Wight - %d\n", count_edge, sum_weight);
+
+	return 0;
+}
+

@@ -38,7 +38,6 @@ int main(int argc, char* argv[])
 		//无向图，邻接矩阵对称
 		edge_matrix[edge_arr[i].u][edge_arr[i].v] = edge_arr[i].w;
 		edge_matrix[edge_arr[i].v][edge_arr[i].u] = edge_arr[i].w;
-	
 	}
 	//选择1号顶点加入生成树
 	vertex_book[1] = 1;
