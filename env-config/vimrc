@@ -11,9 +11,9 @@ endfunc
 "colorscheme torte
 "colorscheme murphy
 "colorscheme desert 
-"colorscheme desert 
+colorscheme desert 
 "colorscheme elflord
-colorscheme ron
+"colorscheme ron
 
 
 
@@ -308,3 +308,6 @@ let NERDTreeWinPos='left'
 let NERDTreeWinSize=31
 nnoremap f :NERDTreeToggle
 map <F7> :NERDTree<CR>  
+
+"设置注释颜色
+highlight Comment ctermfg=green guifg=green
