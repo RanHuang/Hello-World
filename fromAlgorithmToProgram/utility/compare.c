@@ -29,6 +29,7 @@ int doubleComp(double const* x, double const* y)
 	if((*x - *y) < 0.0) return -1;
 	return 0;
 }
+
 int unsignedComp(unsigned const* x, unsigned const* y)
 {
 	return (*x) - (*y);	

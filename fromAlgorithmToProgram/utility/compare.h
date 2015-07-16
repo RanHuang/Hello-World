@@ -8,13 +8,13 @@
 #ifndef __COMPARE_H__
 #define __COMPARE_H__
 
-int intComp(int*, int*);
+int intComp(int const *, int const *);
 
-int charComp(char*, char*);
+int charComp(char const *, char const *);
 
-int floatComp(float*, float*);
+int floatComp(float const *, float const *);
 
-int doubleComp(double*, double*);
+int doubleComp(double const *, double const *);
 
 int unsignedComp(unsigned const*, unsigned const*);
 
