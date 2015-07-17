@@ -13,7 +13,7 @@
 
 int main(int argc, char* argv[])
 {
-	char string[256]; 
+	char string[254]; 
 	char *string1, *string2;
 	char *separator1 = "?&"; //一级分隔符
 	char *separator2 = "/="; //二级分隔符
@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 	char *token, *subtoken;
 	int i;
 	
-	memset(string, 0, 256*sizeof(char));
+	memset(string, 0, 254*sizeof(char));
 	strcpy(string, "http://www.google.com/search?complete=1&h1=zh-CN&ie=GB2312&q=linux&meta=");
 
 	for(i=0, string1=string; ;i++, string1 = NULL){
