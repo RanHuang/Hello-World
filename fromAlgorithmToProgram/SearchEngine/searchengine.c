@@ -4,6 +4,26 @@
 	> Mail: xjhznick@gmail.com 
 	> Created Time: Wed 15 Jul 2015 03:14:37 PM CST
     > Description: 
+		SEARCH-ENGINE(fin, fout)
+		  open fin, fout
+		  while not end of fin
+			do firt-str <- read a line from fin
+			  type <- the first character of first-str
+			  key <- 根据type类型从first-str中提取关键字
+			  second-str <- read a line from fin
+			  i <- SEARCH(key, second-str)
+			  if i>0
+			    then write i to fout
+				else write "not found!" to fout
+		   close fin, fout
+
+		SEARCH(key, second-str)
+		  n <- 0
+		  while data in second-str
+			do x <- get a data from second-str
+			  n++
+			  A[n] = x
+		  return LINEAR-SEARCH(A, sizeof(type), n, key, cmpFunction)
  ************************************************************************/
 
 #include<stdio.h>
@@ -20,11 +40,11 @@ int main(int argc, char* argv[])
 	char first[80];
 	FILE *fin, *fout;
 	int i, j, n;
-	char type, second[256];
+	char type, second[254];
 
-	int key_int, arr_int[64];
-	double key_double, arr_double[32];
-	char key_char, arr_char[256];
+	int key_int, arr_int[63];
+	double key_double, arr_double[31];
+	char key_char, arr_char[254];
 	char *key_str, *arr_str[80];
 	
 	fin = fopen("input.txt", "r");
@@ -54,7 +74,7 @@ int main(int argc, char* argv[])
 		switch(type){
 			case 'i':
 				readInt(&sin, &key_int);
-				fgets(second, 256, fin);
+				fgets(second, 254, fin);
 				initStrInputStream(&sin, second);
 				while(!sisEof(&sin))
 					readInt(&sin, &arr_int[n++]);
@@ -67,7 +87,7 @@ int main(int argc, char* argv[])
 				break;
 			case 'f':
 				readDouble(&sin, &key_double);
-				fgets(second, 256, fin);
+				fgets(second, 254, fin);
 				initStrInputStream(&sin, second);
 				while(!sisEof(&sin))
 					readDouble(&sin, &arr_double[n++]);
@@ -80,7 +100,7 @@ int main(int argc, char* argv[])
 				break;
 			case 'c':
 				readChar(&sin, &key_char);
-				fgets(second, 256, fin);
+				fgets(second, 254, fin);
 				initStrInputStream(&sin, second);
 				while(!sisEof(&sin))
 					readChar(&sin, &arr_char[n++]);
@@ -96,7 +116,7 @@ int main(int argc, char* argv[])
 				for(j = 0; j < 80; j++)
 					arr_str[j] = (char*)malloc(256*sizeof(char));
 				readString(&sin, key_str);
-				fgets(second, 256, fin);
+				fgets(second, 254, fin);
 				initStrInputStream(&sin, second);
 				while(!sisEof(&sin)){
 					if(!readString(&sin, arr_str[n]))
