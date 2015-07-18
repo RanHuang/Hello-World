@@ -1,3 +1,7 @@
+bash:
+	http://www.oschina.net/p/bash/
+	http://www.gnu.org/software/bash
+
 1. #!(shebang) 解析器名称及其路径
 
 2. $bash     #启动bash解析器 
