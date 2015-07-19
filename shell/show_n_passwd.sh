@@ -1,5 +1,8 @@
 #!/bin/bash
 #
+#	show the firt n lines of the /etc/passwd
+
+#	Usage: *.sh n
 CAT()
 {
 	cat /etc/passwd | head -$line
