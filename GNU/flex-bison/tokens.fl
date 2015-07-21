@@ -1,0 +1,23 @@
+/*
+ * 改进flex输入文件，以支持lexer与语法分析器的连接
+ */
+%{
+#include <stdio.h>
+#include "grammar.tab.h"
+%}
+
+NUM [0-9]
+VAR [a-zA-Z]
+WS  [ \t]
+
+%%
+set return SET;
+{NUM}+ return NUMBER;
+{VAR}+ return VARIABLE;
+- return OP_MINUS;
+\+ return OP_PLUS;
+= return ASSIGN;
+; return END;
+\n /*Ignore whitespace*/
+{WS}+ /*Ignore whitespace*/
+%%

@@ -1,0 +1,10 @@
+allow {
+	xjhznick@qq.com
+	nickhuang@foxmail.com
+	xjsnlili@gmail.com
+}
+
+deny {
+	summer@example.com
+	winter@hello.cn
+}
