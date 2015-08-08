@@ -1,0 +1,2 @@
+获取正在使用的P线程库版本：
+	$getconf GNU_LIBPTHREAD_VERSION
