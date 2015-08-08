@@ -1,3 +1,8 @@
+GNU Home Page: 
+	www.gnuplot.info
+gnuplot 入门: 
+	http://deepurple.diandian.com/post/2011-11-27/7208988
+/********************************************************************/
 1. Install gnuplot
 	$sudo apt-get install gnuplot
 	$which gnuplot
