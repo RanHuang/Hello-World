@@ -14,3 +14,5 @@ newton_raphson_method.py
 
 Directory: lpthw
 	Learn Python The Hard Way
+Directory: itcpup
+Introduction to Computation and Programming Using Python
