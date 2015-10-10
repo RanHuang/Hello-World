@@ -5,6 +5,7 @@ tmp/
 *.swp
 *.dat
 *.tmp
+*.pyc
 
 /out
 

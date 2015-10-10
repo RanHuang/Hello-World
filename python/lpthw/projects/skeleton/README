@@ -6,3 +6,9 @@ Using the Skeleton:
 5. Double check is's all working by using nosetests again.
 6. Start coding.
 
+e.g:
+1. Copy skeleton to ex47
+2. Rename everything with NAME to ex47
+3. Change the word NAME in all the files to ex47
+4. Finally, remove all the *.pyc files to make sure you're clean
+
