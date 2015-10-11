@@ -9,7 +9,7 @@ def rewind(f):
     f.seek(0)
 
 def print_a_line(line_count, f):
-#The readline() function returns the \n that is in the line at the end of that line.
+#The readline() function returns the \n that is at the end of the line.
     print line_count, f.readline(),
 # add an extra '\n' to the returned line
 #    print line_count, f.readline()
