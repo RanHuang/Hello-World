@@ -24,8 +24,13 @@ def scan(string):
             sentence.append(('noun', word))
         else:
             num = convert_numbers(word)
-            if isinstance(num, int):
+            """if isinstance(num, int):
                 sentence.append(('number', word))
             else:
                 sentence.append(('error', word))
+            """
+            if not num: 
+                sentence.append(('error', word))
+            else:
+                sentence.append(('number', word))
     return sentence

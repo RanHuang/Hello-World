@@ -34,6 +34,16 @@ def test_numbers():
     assert_equal(result, [('number', '3'),
                           ('number', '91234')])
 
+def test_sentence():
+    result = lexicon.scan("The princess kill 1 bear at west")
+    assert_equal(result, [('error', 'The'),
+                          ('noun', 'princess'),
+                          ('verb', 'kill'),
+                          ('number', '1'),
+                          ('noun', 'bear'),
+                          ('stop', 'at'),
+                          ('direction', 'west')])
+
 def test_error():
     assert_equal(lexicon.scan("ASDFADFASDF"), [('error', 'ASDFADFASDF')])
     result = lexicon.scan("bear IAS princess")
