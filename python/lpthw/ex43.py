@@ -30,7 +30,7 @@ class Death(Scene):
             ]
 
     def enter(self):
-        print Death.quips[randint(0, len(self.quips) - 1)]
+        print self.quips[randint(0, len(self.quips) - 1)]
         exit(1)
 
 class CentralCorridor(Scene):
@@ -67,6 +67,10 @@ class CentralCorridor(Scene):
     elif action == "tell a joke":
 
       return 'laser_weapon_armory'
+    
+    elif action == "help":
+      print "tell a joke"
+      return 'central_corridor'
 
     else:
       print "DOES NOT COMPUTE!"
@@ -98,6 +102,9 @@ class LaserWeaponArmory(Scene):
         print "You grab the neutron bomb and run as fast as you can to the"
         print "bridge where you must place it in the right spot."
         return 'the_bridge'
+      elif guess == "help":
+        print "code:", code
+        return 'laser_weapon_armory'
       else:
         print "The lock buzzes one last time and then you hear a sickening melting sound as the mechanism is fused together."
         print "You decide to sit there, and finally the Gothons blow up the ship from their ship and you die."
@@ -124,6 +131,9 @@ class TheBridge(Scene):
       print "You then jump back through the door, punch the close button and blast the lock so the Gothons can't get out."
       print "Now that the bomb is placed you run to the escape pod ot get off this tin can."
       return 'escape_pod'
+    elif action == 'help':
+      print "slowly place the bomb"
+      return 'the_bridge'
     else:
       print "DOES NOT COMPUTE!"
       return "the_bridge"

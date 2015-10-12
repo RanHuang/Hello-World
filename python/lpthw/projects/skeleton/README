@@ -12,3 +12,10 @@ e.g:
 3. Change the word NAME in all the files to ex47
 4. Finally, remove all the *.pyc files to make sure you're clean
 
+Testing guidelines:
+1. Test files go in tests/ and are named BLAH_tests.py; otherwise nosetests won't run them. This also keeps your tests from clashing with your other code.
+2. Write one test file for each module you make.
+3. Keep your test cases(functions)short, but do not worry if they are a bit messy. Test cases are usually kind of messy.
+4. Create helper functions that get rid of duplicate code.
+5. Finally, do not get too attached to your tests. Sometimes, the best way to redesign something is to just delete it and start over.
+
