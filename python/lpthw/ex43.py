@@ -152,7 +152,7 @@ class EscapePod(Scene):
     guess = raw_input("[pod #]> ")
 
     if int(guess) != good_pod:
-      print "You jumb int pod %s and hit the eject button." % guess
+      print "You jumb into pod %s and hit the eject button." % guess
       print "The pod escapes out into the void of space, then implodes as the hull reptures, crushing your body int the jam jelly."
       return 'death'
     else:
