@@ -46,3 +46,6 @@ Blog: linux expect详解
 	http://www.cnblogs.com/lzrabbit/p/4298794.html
 	> sudo apt-get install expect
 	expect是一种基于TCL，能与交互式程序进行“可程序化”会话的脚本语言，是一种可以提供“分支和嵌套结构”来引导程序流程的解释型脚本语言。 
+
+(5)其它单元测试框架
+	如 DejaGnu
