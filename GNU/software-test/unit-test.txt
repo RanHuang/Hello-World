@@ -37,3 +37,12 @@ Generate cutgen:
 	> gcc -Wall -I ./embunit/ -L embunit/lib/ -o embStackTest test_embunit.c stack.c -lembUnit
 	> ./embStackTest
 运行测试映像，生成测试环境报告。
+
+(4)expect工具
+	http://www.nist.gov/el/msid/expect.cfm
+Blog: TCL/Expect交互式自动化测试概要
+	http://lhq1013.iteye.com/blog/907633
+Blog: linux expect详解
+	http://www.cnblogs.com/lzrabbit/p/4298794.html
+	> sudo apt-get install expect
+	expect是一种基于TCL，能与交互式程序进行“可程序化”会话的脚本语言，是一种可以提供“分支和嵌套结构”来引导程序流程的解释型脚本语言。 
