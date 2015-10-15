@@ -1,0 +1,39 @@
+单元测试--关注系统的内部行为
+	调用单元API，检验各种刺激能否得到期待的结果。
+
+(1)一个简单的回归测试(打造自己的测试框架)：
+	stack.h stack.c regress.c
+	> gcc -Wall -o test regress.c stack.c
+	> ./test
+regress.c:
+ 1)main函数，简单地调用测试函数
+ 2)结果检查函数，如果为0则测试失败；否则测试通过
+checkResult函数两个参数，一个测试编号和独立的测试结果
+
+(2)C单元测试系统--cut
+C Unit Test System:
+	http://sourceforge.net/projects/cut/
+	> wget http://ncu.dl.sourceforge.net/project/cut/cut/2.3/cut-2.3.zip
+Generate cutgen:
+	> unzip cut-2.3.zip
+	> cd cut-2.3
+	> make
+	> cp cutgen cut.h ../
+1）创建cut单元测试环境
+	$ ./cutgen test_cut.c  > cutcheck.c
+2)编译链接文件，生成单元测试映像
+	$ gcc -o cutcheck cutcheck.c stack.c test_cut.c 
+3）执行单元测试
+	$ ./cutcheck 
+
+(3)嵌入单元测试框架--Embunit
+	http://sourceforge.net/projects/embunit
+	> wget http://nchc.dl.sourceforge.net/project/embunit/embunit/1.0.1/embunit-src-1.0.1.tar.gz
+1)embunit环境准备
+	> tar zxvf embunit-src-1.0.1.tar.gz
+	> cd embunit
+	> make
+2)生成单元测试：将源文件与Embunit库编译链接至一起
+	> gcc -Wall -I ./embunit/ -L embunit/lib/ -o embStackTest test_embunit.c stack.c -lembUnit
+	> ./embStackTest
+运行测试映像，生成测试环境报告。

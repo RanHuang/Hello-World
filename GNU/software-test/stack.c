@@ -6,12 +6,12 @@
     > Description: 
  ************************************************************************/
 
-#include <stdio.h>
+#include <stdlib.h>
 #include "stack.h"
 
 int stackCreate(stack_t *stack, int stackSize)
 {
-	if((stackSize <= 0) || (stackSize >= 1024))
+	if((stackSize <= 0) || (stackSize > 1024))
 		return -1;
 
 	stack->storage = (int *)malloc(sizeof(int) * stackSize);
