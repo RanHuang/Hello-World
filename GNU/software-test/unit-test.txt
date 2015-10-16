@@ -80,3 +80,9 @@ Blog: linux expect详解
 	使用gcov时关闭代码优化功能，测试覆盖对预处理时使用源码宏扩展无意义。
 
 	> gcov -h
+(2)GNU gprof 性能分析
+	sort.c
+	> gcc -o sort sort.c -pg
+	> ./sort
+	运行加装性能分析器的映像，生成gmon.out文件，gprof联合使用该文件和原始映像生成可读的性能统计信息。
+	> gprof sort gmon.out > sort.gprof
