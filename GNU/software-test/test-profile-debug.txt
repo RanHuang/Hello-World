@@ -86,3 +86,59 @@ Blog: linux expect详解
 	> ./sort
 	运行加装性能分析器的映像，生成gmon.out文件，gprof联合使用该文件和原始映像生成可读的性能统计信息。
 	> gprof sort gmon.out > sort.gprof
+
+##########################################################################
+
+(1)内存调试
+Valgrind工具:
+	> sudo apt-get install valgrind
+	test_memory.c
+	> gcc -g test_memory.c -o test
+	内存查看器--找到内存泄露：
+	> valgrind --tool=memcheck ./test
+	缓存分析：
+	> valgrind --tool=cachegrind ./test
+
+Electric Fence:
+	> sudo apt-get install electric-fence
+	> gcc -lefence test_memory.c -o test
+	编译完成后在GDB下运行程序，查找发生的溢出，该工具较古老。
+
+yamd:
+	> yamd-gcc sourcefile.c
+	> yamd-g++ sourcefile.cpp
+
+mtrace:
+blog: 掌握 Linux 调试技术
+	http://www.ibm.com/developerworks/cn/linux/sdk/l-debug/
+	mtrace为GNU C库的一部分，只需要通过在源码中添加mtrace()函数来记录调用分配和释放的日志来为程序加装mtrace。
+	test_mtrace.c mtrace.txt
+	> gcc -g -o test test_mtrace.c 
+	> export MALLOC_TRACE=$PWD/mtrace.txt
+	> ./test
+	> mtrace test mtrace.txt 
+	> mtrace test $MALLOC_TRACE
+
+(2)交叉引用工具
+Cscope工具:
+	一款很棒的源码浏览工具
+
+exref: 
+	可以为一个或多个源文件生成HTML列表（包括所有的函数和符号）及它们的相互关系。
+cflow: 
+	提供简单易读的函数调用层次关系
+
+(3)ltrace跟踪系统调用
+	对指定的可执行文件的指定动态库进行符号跟踪。
+Error:	> ltrace -l  /lib/x86_64-linux-gnu/libc.so.6  /bin/ls
+
+(4)动态挂接GDB
+	dynamic_gdb.c
+	> gcc -g -o proc dynamic_gdb.c 
+	调试进程需要足够的权限：
+	> sudo su
+	> ./proc &
+	> gdb -q - pid
+
+	(gdb) detach
+	(gdb) quit
