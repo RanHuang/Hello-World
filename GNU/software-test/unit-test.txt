@@ -19,6 +19,9 @@ Generate cutgen:
 	> cd cut-2.3
 	> make
 	> cp cutgen cut.h ../
+
+	test_cut.c stack.c
+
 1）创建cut单元测试环境
 	$ ./cutgen test_cut.c  > cutcheck.c
 2)编译链接文件，生成单元测试映像
@@ -34,6 +37,9 @@ Generate cutgen:
 	> cd embunit
 	> make
 2)生成单元测试：将源文件与Embunit库编译链接至一起
+	
+	stack.c test_embunit.c	
+
 	> gcc -Wall -I ./embunit/ -L embunit/lib/ -o embStackTest test_embunit.c stack.c -lembUnit
 	> ./embStackTest
 运行测试映像，生成测试环境报告。
@@ -45,7 +51,32 @@ Blog: TCL/Expect交互式自动化测试概要
 Blog: linux expect详解
 	http://www.cnblogs.com/lzrabbit/p/4298794.html
 	> sudo apt-get install expect
+
+	test_expect
+	
+	> chmod a+x test_expect
+	> ./test_expect
+
 	expect是一种基于TCL，能与交互式程序进行“可程序化”会话的脚本语言，是一种可以提供“分支和嵌套结构”来引导程序流程的解释型脚本语言。 
 
 (5)其它单元测试框架
 	如 DejaGnu
+
+##########################################################################
+
+(1) GNU gcov 覆盖测试
+	bubblesort.c
+	> gcc -o bubblesort bubblesort.c -ftest-coverage -fprofile-arcs
+	-ftest-coverage : 报告统计和覆盖信息
+	-fprofile-arcs : 生成统计各分支执行次数的统计信息
+
+	1）-b -- 查看分支概率
+	> gcov -b bubblesort.c
+	分支概率有助于理解程序流程，但是理解分支点代表的含义需要参考汇编指令集。
+
+	2）-f -- 按各个函数查看覆盖情况
+	> gcov -f bubblesort.c
+
+	使用gcov时关闭代码优化功能，测试覆盖对预处理时使用源码宏扩展无意义。
+
+	> gcov -h
