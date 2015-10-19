@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 # Python Network Programming Cookbook -- Chapter 1
+# -*- coding: utf-8 -*-
 
 import socket
 # Python的socket模块提供类方法和实例方法，二者区别是使用类方法不需要创建套接字对象实例
 
+# 获取主机名和对应IP地址
 def print_machine_info():
     host_name = socket.gethostname()
     ip_address = socket.gethostbyname(host_name)

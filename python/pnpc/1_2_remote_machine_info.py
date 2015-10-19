@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 import socket
 
+# 根据远程主机名获取其IP地址
 def print_remote_machine_info():
     remote_host = "www.python.org"
     try:
