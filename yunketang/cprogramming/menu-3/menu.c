@@ -57,8 +57,6 @@ int main()
 		}
     }
 
-	DeleteMenu(pList);
-
     return 0;
 }
 
@@ -74,6 +72,8 @@ int ShowVersion()
 }
 int Quit()
 {
+	DeleteMenu(pList);
+
 	printf("Exit form this program.\n");
 	exit(0);
 }
