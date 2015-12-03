@@ -22,3 +22,6 @@ Directory: pnpc
 	Python Network Programming Cookbook
 	《Python 网络编程攻略》
 
+Directory: basicPython
+	Beginning Python
+	《Python基础教程》

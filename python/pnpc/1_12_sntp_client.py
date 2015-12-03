@@ -18,6 +18,7 @@ def sntp_client():
     
     if data:
         print "Response received from:", address
+        # print "Response: ", data
         t = struct.unpack('!12I', data)[10]
         t -= TIME1970
         print '\tTime = %s' % time.ctime(t)

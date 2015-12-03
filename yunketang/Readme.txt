@@ -7,3 +7,6 @@ cprogramming
 
 	程序设计入门—C语言
 	http://mooc.study.163.com/course/ZJU-1000002011
+datastructure
+	数据结构
+	http://www.icourse163.org/learn/zju-93001

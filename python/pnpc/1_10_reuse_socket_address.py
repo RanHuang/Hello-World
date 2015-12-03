@@ -23,6 +23,7 @@ def reuse_socket_address():
     local_port = 8282
 
     serv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # Reuse the port
     serv_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     serv_sock.bind(('', local_port))
     serv_sock.listen(1)

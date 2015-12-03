@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # NTP - Network Time Protocol
+# $pip install ntplib
 import ntplib
 from time import ctime
 
