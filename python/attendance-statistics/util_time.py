@@ -1,0 +1,25 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from datetime import datetime
+
+
+def is_weekend(day_str):
+    """
+    if a day is weekend
+    :param day_str: string of a day
+    :param separator: separator of year, month and day, default is empty
+    :return: True: is weekend; False: not weekend
+    """
+    spec = "%Y-%m-%d %H:%M:%S"
+    day = datetime.strptime(day_str, spec).date()
+    # Monday == 0 ... Sunday == 6
+    if day.weekday() in [5, 6]:
+        return True
+    else:
+        return False
+
+
+if __name__ == "__main__":
+    print(is_weekend("2021-06-07 00:00:00"))
+    print(is_weekend("2021-06-13 00:00:00"))
