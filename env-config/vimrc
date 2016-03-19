@@ -5,18 +5,12 @@ func! SaveInputData()
 	exec "w! /tmp/input_data"
 endfunc
 
-
-
-
 "colorscheme torte
 "colorscheme murphy
 "colorscheme desert 
 colorscheme desert 
 "colorscheme elflord
 "colorscheme ron
-
-
-
 
 "set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 "set termencoding=utf-8
@@ -66,42 +60,42 @@ endif
 autocmd BufNewFile *.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
 ""定义函数SetTitle，自动插入文件头 
 func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#########################################################################") 
-		call append(line("."), "\# File Name: ".expand("%")) 
-		call append(line(".")+1, "\# Author: Nick") 
-		call append(line(".")+2, "\# mail: xjhznick@gmail.com") 
-		call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "\# Description: ")
-		call append(line(".")+5, "\#########################################################################") 
-		call append(line(".")+6, "\#!/bin/bash") 
-		call append(line(".")+7, "") 
-	else 
-		call setline(1, "/*************************************************************************") 
-		call append(line("."), "	> File Name: ".expand("%")) 
-		call append(line(".")+1, "	> Author: Nick") 
-		call append(line(".")+2, "	> Mail: xjhznick@gmail.com ") 
-		call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "    > Description: ")
-		call append(line(".")+5, " ************************************************************************/") 
-		call append(line(".")+6, "")
-	endif
-	if &filetype == 'cpp'
-		call append(line(".")+7, "#include<iostream>")
-		call append(line(".")+8, "using namespace std;")
-		call append(line(".")+9, "")
-	endif
-	if &filetype == 'c'
-		call append(line(".")+7, "#include<stdio.h>")
-		call append(line(".")+8, "")
-	endif
-	"	if &filetype == 'java'
-	"		call append(line(".")+6,"public class ".expand("%"))
-	"		call append(line(".")+7,"")
-	"	endif
-	"新建文件后，自动定位到文件末尾
-	autocmd BufNewFile * normal G
+    "如果文件类型为.sh文件 
+    if &filetype == 'sh' 
+        call setline(1,"\#########################################################################") 
+	call append(line("."), "\# File Name: ".expand("%")) 
+	call append(line(".")+1, "\# Author: Nick") 
+	call append(line(".")+2, "\# mail: xjhznick@gmail.com") 
+	call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
+	call append(line(".")+4, "\# Description: ")
+	call append(line(".")+5, "\#########################################################################") 
+	call append(line(".")+6, "\#!/bin/bash") 
+	call append(line(".")+7, "") 
+    else 
+        call setline(1, "/*************************************************************************") 
+	call append(line("."), "	> File Name: ".expand("%")) 
+	call append(line(".")+1, "	> Author: Nick") 
+	call append(line(".")+2, "	> Mail: xjhznick@gmail.com ") 
+	call append(line(".")+3, "	> Created Time: ".strftime("%c")) 
+	call append(line(".")+4, "    > Description: ")
+	call append(line(".")+5, " ************************************************************************/") 
+	call append(line(".")+6, "")
+    endif
+    if &filetype == 'cpp'
+	call append(line(".")+7, "#include<iostream>")
+	call append(line(".")+8, "using namespace std;")
+	call append(line(".")+9, "")
+    endif
+    if &filetype == 'c'
+	call append(line(".")+7, "#include<stdio.h>")
+	call append(line(".")+8, "")
+    endif
+"    if &filetype == 'java'
+"        call append(line(".")+6,"public class ".expand("%"))
+"        call append(line(".")+7,"")
+"    endif
+    "新建文件后，自动定位到文件末尾
+    autocmd BufNewFile * normal G
 endfunc 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "键盘命令
@@ -129,32 +123,30 @@ map <C-F3> \be
 "C，C++ 按F5编译运行
 map <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
-	exec "w"
-	if &filetype == 'c'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'cpp'
-		exec "!g++ % -o %<"
-		exec "! ./%<"
-	elseif &filetype == 'java' 
-		exec "!javac %" 
-		exec "!java %<"
-	elseif &filetype == 'sh'
-		:!./%
-	elseif &filetype == 'py'
-		exec "!python %"
-		exec "!python %<"
-	endif
+    exec "w"
+    if &filetype == 'c'
+        exec "!g++ % -o %<"
+	exec "! ./%<"
+    elseif &filetype == 'cpp'
+	exec "!g++ % -o %<"
+	exec "! ./%<"
+    elseif &filetype == 'java' 
+	exec "!javac %" 
+	exec "!java %<"
+    elseif &filetype == 'sh'
+       	:!./%
+    elseif &filetype == 'py'
+	exec "!python %"
+	exec "!python %<"
+    endif
 endfunc
 "C,C++的调试
 map <F8> :call Rungdb()<CR>
 func! Rungdb()
-	exec "w"
-	exec "!g++ % -g -o %<"
-	exec "!gdb ./%<"
+    exec "w"
+    exec "!g++ % -g -o %<"
+    exec "!gdb ./%<"
 endfunc
-
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""实用设置
@@ -279,22 +271,16 @@ au BufRead,BufNewFile *  setfiletype txt
 :inoremap " ""<ESC>i
 :inoremap ' ''<ESC>i
 function! ClosePair(char)
-	if getline('.')[col('.') - 1] == a:char
-		return "\<Right>"
+    if getline('.')[col('.') - 1] == a:char
+	    return "\<Right>"
 	else
-		return a:char
+	    return a:char
 	endif
 endfunction
 filetype plugin indent on 
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-
-
 "NERDtee设定
 let NERDChristmasTree=1
 let NERDTreeAutoCenter=1
