@@ -4,6 +4,8 @@
 	> Mail: xjhznick@gmail.com 
 	> Created Time: Fri 17 Jul 2015 10:23:19 AM CST
     > Description: 
+	  从终端读入内容，输入结束后在终端显示输入的内容，通过fgetc和fputc实现
+	  ouput.dat作为临时存储数据的中介
 		终端输入，表示文件结束的方法：
 		1. 某行开头 Ctrl+D
 		2. 光标不在行首 连续两次 Ctrl+D
