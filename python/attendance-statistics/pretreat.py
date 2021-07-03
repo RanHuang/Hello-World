@@ -32,34 +32,34 @@ if __name__ == '__main__':
 
     # 判断是否为周末
     for row in rows_list:
-        check_in_date = row[COLUMN_CHECK_IN_DATE].value
+        check_in_date = row[ORIGIN_COLUMN_CHECK_IN_DATE].value
         day = check_in_date.date()
         # Monday == 0 ... Sunday == 6
         if day.weekday() in [5, 6]:
             logger.debug("check in weekend: %s", check_in_date)
-            row[COLUMN_IS_WEEKEND].value = STRING_YES
+            row[ORIGIN_COLUMN_IS_WEEKEND].value = STRING_YES
         # 初始化备注列为空字符串
-        row[COLUMN_COMMENT].value = ""
+        row[ORIGIN_COLUMN_COMMENT].value = ""
 
     # 提取加班打卡时间提取
     for row in rows_list:
-        check_in_time = row[COLUMN_CHECK_IN_TIME].value
+        check_in_time = row[ORIGIN_COLUMN_CHECK_IN_TIME].value
         time_list = [str_time.strip() for str_time in check_in_time.split(TIME_SEPARATOR)]
         time_list = [time_str for time_str in time_list if len(time_str) > 0]
         logger.debug("check in time: %s", time_list)
         # 凌晨加班判定
         if time_list[0] < TIME_BEFORE_DOWN_END:
-            row[COLUMN_IS_BEFORE_DOWN].value = STRING_YES
-            row[COLUMN_COMMENT].value += "发现凌晨打卡；"
+            row[ORIGIN_COLUMN_IS_BEFORE_DOWN].value = STRING_YES
+            row[ORIGIN_COLUMN_COMMENT].value += "发现凌晨打卡；"
 
-        if row[COLUMN_IS_WEEKEND].value:
+        if row[ORIGIN_COLUMN_IS_WEEKEND].value:
             # 周末加班
             overtime_list = time_list
-            row[COLUMN_OVER_TIME].value = "; ".join(overtime_list)
+            row[ORIGIN_COLUMN_OVER_TIME].value = "; ".join(overtime_list)
             if len(overtime_list) % 2 != 0:
-                row[COLUMN_COMMENT].value += "奇数次加班；"
+                row[ORIGIN_COLUMN_COMMENT].value += "奇数次加班；"
             if len(overtime_list) == 2:
-                row[COLUMN_COMMENT].value += "周日仅2次打卡；"
+                row[ORIGIN_COLUMN_COMMENT].value += "周日仅2次打卡；"
         else:
             # 工作日加班
             logger.info("weekday over time: %s", time_list[-2:])
@@ -74,9 +74,9 @@ if __name__ == '__main__':
                     # 排除未加班的下午下班卡
                     overtime_list = []
                 else:
-                    row[COLUMN_COMMENT].value += "仅1次加班卡；"
-            row[COLUMN_OVER_TIME].value = "; ".join(overtime_list)
+                    row[ORIGIN_COLUMN_COMMENT].value += "仅1次加班卡；"
+            row[ORIGIN_COLUMN_OVER_TIME].value = "; ".join(overtime_list)
 
-    file_calc_origin = os.path.join(os.getcwd(), FILE_DIR, FILE_CALC)
+    file_calc_origin = os.path.join(os.getcwd(), FILE_DIR, FILE_PRE)
     wb.save(file_calc_origin)
     logger.info("第一次程序处理结果写入文件: %s", file_calc_origin)

@@ -16,4 +16,5 @@ Release/
 # build/release artifacts
 /*.tar.gz
 /SHASUMS*.txt*
-
+.DS_Store
+.idea/

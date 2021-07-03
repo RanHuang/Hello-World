@@ -12,5 +12,11 @@
 5. (人工)修正时长
 6. (程序)计算统计结果
 
+# 
+```shell
+# 安装离线包
+pip install -r requirements.txt  --no-index --find-links=python_pkgs/
+```
+
 
 
