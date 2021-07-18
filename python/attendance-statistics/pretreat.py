@@ -57,7 +57,7 @@ if __name__ == '__main__':
             overtime_list = time_list
             row[ORIGIN_COLUMN_OVER_TIME].value = "; ".join(overtime_list)
             if len(overtime_list) % 2 != 0:
-                row[ORIGIN_COLUMN_COMMENT].value += "奇数次加班；"
+                row[ORIGIN_COLUMN_COMMENT].value += "周末奇数次打卡；"
             if len(overtime_list) == 2:
                 row[ORIGIN_COLUMN_COMMENT].value += "周日仅2次打卡；"
         else:
