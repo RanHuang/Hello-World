@@ -77,9 +77,9 @@ if __name__ == '__main__':
                     row[ORIGIN_COLUMN_COMMENT].value += "仅1次加班卡；"
             if len(overtime_list) > 0:
                 if overtime_list[-1] <= TIME_WEEKDAY_OVER_TIME_START:
-                    # 所有打卡时间为18:30，算作无加班数据
+                    # 所有打卡时间为18:30之前，算作无加班数据
                     overtime_list = []
-                # 判断18:30之后是否存在多次打开情况
+                # 判断18:30之后是否存在多次打卡情况
                 overtime_after_start = [time_item for time_item in overtime_list if time_item > TIME_WEEKDAY_OVER_TIME_START]
                 if len(overtime_after_start) > 1:
                     row[ORIGIN_COLUMN_COMMENT].value += "平时多次下班打卡；"
