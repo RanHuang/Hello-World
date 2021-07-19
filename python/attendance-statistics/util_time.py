@@ -27,7 +27,7 @@ def calc_duration_time(start_str, end_str):
     delta = end - start
     seconds = delta.seconds
     hours = seconds / 3600.0
-    return round(hours, 2)
+    return round(hours, 1)
 
 
 if __name__ == "__main__":
