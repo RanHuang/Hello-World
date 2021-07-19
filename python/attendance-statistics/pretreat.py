@@ -82,7 +82,9 @@ if __name__ == '__main__':
                 # 判断18:30之后是否存在多次打卡情况
                 overtime_after_start = [time_item for time_item in overtime_list if time_item > TIME_WEEKDAY_OVER_TIME_START]
                 if len(overtime_after_start) > 1:
-                    row[ORIGIN_COLUMN_COMMENT].value += "平时多次下班打卡；"
+                    if len(time_list) % 2 != 0:
+                        # 存在18:30之后数据，且整天打卡次数为奇数
+                        row[ORIGIN_COLUMN_COMMENT].value += "平时奇数次打卡；"
 
             row[ORIGIN_COLUMN_OVER_TIME].value = "; ".join(overtime_list)
 
