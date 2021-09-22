@@ -40,6 +40,7 @@ if __name__ == '__main__':
             overtime_list = [str_time.strip() for str_time in overtime.split(TIME_SEPARATOR)]
             overtime_list = [time_str for time_str in overtime_list if len(time_str) > 0]
             if len(overtime_list) != 2:
+                logger.info("异常加班时间: %s", overtime_list)
                 row[ORIGIN_COLUMN_COMMENT].value = "打卡次数异常(周内必须2次加班打卡记录)"
                 row[ORIGIN_COLUMN_OVER_TIME_STATISTIC].value = -1
                 continue
@@ -82,6 +83,7 @@ if __name__ == '__main__':
             elif len(overtime_list) == 2:
                 overtime_statistic = calc_duration_time(overtime_list[0], overtime_list[1])
             else:
+                logger.info("异常加班时间: %s", overtime_list)
                 row[ORIGIN_COLUMN_COMMENT].value = "周末加班打卡次数异常(正常次数为2,4,6)"
                 overtime_statistic = -1
             row[ORIGIN_COLUMN_OVER_TIME_STATISTIC].value = overtime_statistic
