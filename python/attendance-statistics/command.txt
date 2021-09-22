@@ -1,0 +1,14 @@
+# 安装离线包
+pip install -r requirements.txt --find-links=python_pkgs
+
+# Windows命令行终端打开python
+1. 进入python脚本所在目录
+2. 先左击空白处，按住shift键，鼠标右击，点击打开命令行程序选项
+3. 命令行终端输入python确认能启动python程序
+
+# 执行脚本计算加班时长
+python pretreat.py
+
+python calc_over_time.py
+
+python summary.py
