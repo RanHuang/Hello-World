@@ -49,13 +49,12 @@ if __name__ == '__main__':
     wb_summary = openpyxl.load_workbook(file_summary)
     sheet_summary = wb_summary.active
     row_num_summary = sheet_summary.max_row
-    logger.info("row number: %d", row_num)
     column_num_summary = sheet_summary.max_column
-    logger.info("column number: %d", column_num_summary)
+    logger.info("row number summary: %d, column number summary: %d", row_num_summary, column_num_summary)
 
     # 填充第一行：日期
     rows_first = list(sheet_summary.rows)[0]
-    logger.info("column number: %d", len(rows_first))
+    logger.debug("column number: %d", len(rows_first))
     for index in range(0, len(date_list)):
         date_index = index + 4
         rows_first[date_index].value = date_list[index].strftime('%m-%d')
@@ -103,6 +102,16 @@ if __name__ == '__main__':
             else:
                 total_over_time = math.floor(total_over_time) + 1
             row[len(date_list) + 4 + 1].value = total_over_time
+
+    # 生成最终结果时，'0'改为空值''
+    column_num_summary = sheet_summary.max_column
+    for row in list(sheet_summary.rows)[1:]:
+        logger.info("row number: %s name: %s", row[2].value, row[3].value)
+        for index in range(4, len(row)):
+            logger.info("value: %s", row[index].value)
+            value = row[index].value
+            if value is not None and value == 0:
+                row[index].value = ''
 
     file_calc_summary = os.path.join(os.getcwd(), FILE_DIR, FILE_SUMMARY)
     wb_summary.save(file_calc_summary)
