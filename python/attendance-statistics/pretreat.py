@@ -74,7 +74,8 @@ if __name__ == '__main__':
                     # 排除未加班的下午下班卡
                     overtime_list = []
                 else:
-                    row[ORIGIN_COLUMN_COMMENT].value += "仅1次加班卡；"
+                    if overtime_list[0] >= TIME_WEEKDAY_OVER_TIME_START:
+                        row[ORIGIN_COLUMN_COMMENT].value += "仅1次加班卡；"
             if len(overtime_list) > 0:
                 if overtime_list[-1] <= TIME_WEEKDAY_OVER_TIME_START:
                     # 所有打卡时间为18:30之前，算作无加班数据
