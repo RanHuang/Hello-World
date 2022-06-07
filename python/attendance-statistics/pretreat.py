@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 
 if __name__ == '__main__':
-    file_excel_origin = os.path.join(os.getcwd(), FILE_DIR, FILE_ORIGIN)
+    file_excel_origin = os.path.join(os.getcwd(), FILE_DIR, FILE_ORIGIN_WEEKEND)
     logger.info("file path: %s", file_excel_origin)
     wb = openpyxl.load_workbook(file_excel_origin)
     sheet = wb.active
@@ -30,19 +30,11 @@ if __name__ == '__main__':
     for cell in rows_list[0]:
         logger.debug("type: %s, data: %s", type(cell.value), cell.value)
 
-    # 判断是否为周末
+    # 提取加班打卡时间提取
     for row in rows_list:
-        check_in_date = row[ORIGIN_COLUMN_CHECK_IN_DATE].value
-        day = check_in_date.date()
-        # Monday == 0 ... Sunday == 6
-        if day.weekday() in [5, 6]:
-            logger.debug("check in weekend: %s", check_in_date)
-            row[ORIGIN_COLUMN_IS_WEEKEND].value = STRING_YES
         # 初始化备注列为空字符串
         row[ORIGIN_COLUMN_COMMENT].value = ""
 
-    # 提取加班打卡时间提取
-    for row in rows_list:
         check_in_time = row[ORIGIN_COLUMN_CHECK_IN_TIME].value
         time_list = [str_time.strip() for str_time in check_in_time.split(TIME_SEPARATOR)]
         time_list = [time_str for time_str in time_list if len(time_str) > 0]

@@ -4,6 +4,7 @@
 # 打卡数据所在目录和文件名
 FILE_DIR = "data"
 FILE_ORIGIN = "origin.xlsx"
+FILE_ORIGIN_WEEKEND = "origin-weekend.xlsx"
 FILE_PRE = "preprocess.xlsx"
 FILE_CALC = "calc.xlsx"
 FILE_SUMMARY = "summary.xlsx"
