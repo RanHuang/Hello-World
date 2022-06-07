@@ -7,6 +7,8 @@ pip install -r requirements.txt --find-links=python_pkgs
 3. 命令行终端输入python确认能启动python程序
 
 # 执行脚本计算加班时长
+python label_weekend.py
+
 python pretreat.py
 
 python calc_over_time.py

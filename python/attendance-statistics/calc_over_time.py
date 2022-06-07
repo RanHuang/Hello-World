@@ -58,7 +58,6 @@ if __name__ == '__main__':
         if not row[ORIGIN_COLUMN_IS_WEEKEND].value:
             # 跳过周内加班数据
             continue
-
         overtime = row[ORIGIN_COLUMN_OVER_TIME].value
         if overtime is None:
             # 不存在加班打卡记录
