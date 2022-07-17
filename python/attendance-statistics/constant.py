@@ -59,3 +59,20 @@ ORIGIN_COLUMN_COMMENT = 9
 # # Excel列名称
 # 姓名
 SUMMARY_COLUMN_NAME = 3
+
+#### 迟到 & 早退 ###
+
+FILE_ORIGIN_LATE = "originForLate.xlsx"
+FILE_LATE_OR_EARLY = "lateOrEarly.xlsx"
+# 周内上班迟到时间
+TIME_WEEKDAY_BE_LATE_TIME = "08:35"
+# 周内下班早退时间
+TIME_WEEKDAY_LEAVE_EARLY_TIME = "17:30"
+
+# 迟到
+ORIGIN_COLUMN_IS_BE_LATE = 5
+# 早退
+ORIGIN_COLUMN_LEAVE_EARLY = 6
+
+STRING_BE_LATE = "迟到"
+STRING_LEAVE_EARLY = "早退"
