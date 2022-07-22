@@ -18,3 +18,4 @@ Release/
 /SHASUMS*.txt*
 .DS_Store
 .idea/
+log*

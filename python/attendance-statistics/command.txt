@@ -14,3 +14,10 @@ python pretreat.py
 python calc_over_time.py
 
 python summary.py
+
+
+# 执行脚本计算迟到早退
+python3 beLateAndLeaveEarly.py
+
+# 执行脚本合并统计数据
+python3 merge.py
