@@ -67,6 +67,9 @@ if __name__ == '__main__':
         logger.debug("start to merge %s", name)
         for index in range(valid_column_program):
             time_value = program_row[PROGRAM_START_COLUMN_INDEX + index].value
+            logger.debug("column: %d, time_value: %s", PROGRAM_START_COLUMN_INDEX + index, time_value)
+            if isinstance(time_value, str):
+                time_value = float(time_value)
             if time_value is not None and time_value > 0:
                 row_num = name_row_dict[name]
                 handwork_row = handwork_rows_list[row_num]
