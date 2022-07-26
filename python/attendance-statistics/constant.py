@@ -94,3 +94,7 @@ PROGRAM_NAME_COLUMN_INDEX = 3
 
 # 合并后的数据文件
 FILE_MERGED = "merged.xlsx"
+
+# 统计黄色的单元格数量
+COLOR_YELLOW = 'FFFFFF00'
+FILE_ON_BUSINESS = 'business.xlsx'
