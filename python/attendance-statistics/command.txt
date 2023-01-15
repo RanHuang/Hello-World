@@ -11,7 +11,10 @@ python label_weekend.py
 
 python pretreat.py
 
+# 以下两个脚本交替使用，并用修改后的preprocess_color.xlsx替换preprocess.xlsx
 python calc_over_time.py
+# 彩色标注异常数据
+python color_preprocess.py
 
 python summary.py
 

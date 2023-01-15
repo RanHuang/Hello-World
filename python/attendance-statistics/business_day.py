@@ -13,7 +13,7 @@ logging.basicConfig(format='%(asctime)s - %(filename)s[line:%(lineno)d] - %(leve
 logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
-    file_excel_handwork = os.path.join(os.getcwd(), FILE_DIR, FILE_HANDWORK)
+    file_excel_handwork = os.path.join(os.getcwd(), FILE_DIR, FILE_MERGED)
     logger.info("file path: %s", file_excel_handwork)
     wb = openpyxl.load_workbook(file_excel_handwork)
     sheet = wb.active

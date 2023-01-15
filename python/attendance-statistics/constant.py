@@ -6,6 +6,7 @@ FILE_DIR = "data"
 FILE_ORIGIN = "origin.xlsx"
 FILE_ORIGIN_WEEKEND = "origin-weekend.xlsx"
 FILE_PRE = "preprocess.xlsx"
+FILE_PRE_COLOR = "preprocess_color.xlsx"
 FILE_CALC = "calc.xlsx"
 FILE_SUMMARY = "summary.xlsx"
 FILE_NAME_LIST = "name_list.xlsx"
@@ -27,6 +28,8 @@ TIME_BEFORE_DOWN_END = "07:00"
 TIME_WEEKDAY_OFF_TIME = "17:30"
 # 周内晚上加班从18:30开始计算
 TIME_WEEKDAY_OVER_TIME_START = "18:30"
+# 周内晚上加班最后一条记录大于19:00才有效
+TIME_WEEKDAY_OVER_TIME_VALID = "19:00"
 # 周末上午下班时间为12:00
 TIME_WEEKEND_OFF_WORK_MORNING = "12:00"
 # 周末下午上班时间为14:00
