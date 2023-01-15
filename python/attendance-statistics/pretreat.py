@@ -53,32 +53,20 @@ if __name__ == '__main__':
             if len(overtime_list) == 2:
                 row[ORIGIN_COLUMN_COMMENT].value += "周日仅2次打卡；"
         else:
-            # 工作日加班
-            logger.info("weekday over time: %s", time_list[-2:])
+            # 过滤17:50之后的工作日打卡时间
+            time_list_after_work = [time_str for time_str in time_list if time_str > TIME_WEEKDAY_OFF_TIME]
+            # logger.info("weekday over time: %s", time_list_after_work)
             overtime_list = []
-            for time_str in time_list:
-                if time_str > TIME_WEEKDAY_OFF_TIME:
-                    overtime_list.append(time_str)
-            if len(overtime_list) >= 2:
-                overtime_list = overtime_list[-2:]
-            elif len(overtime_list) == 1:
-                if len(time_list) == 4:
-                    # 排除未加班的下午下班卡
+            if len(time_list_after_work) > 0:
+                if time_list_after_work[-1] <= TIME_WEEKDAY_OVER_TIME_VALID:
+                    # 打卡时间为19:00之前，算作无加班数据
                     overtime_list = []
                 else:
-                    if overtime_list[0] >= TIME_WEEKDAY_OVER_TIME_START:
-                        row[ORIGIN_COLUMN_COMMENT].value += "仅1次加班卡；"
-            if len(overtime_list) > 0:
-                if overtime_list[-1] <= TIME_WEEKDAY_OVER_TIME_START:
-                    # 所有打卡时间为18:30之前，算作无加班数据
-                    overtime_list = []
-                # 判断18:30之后是否存在多次打卡情况
-                overtime_after_start = [time_item for time_item in overtime_list if time_item > TIME_WEEKDAY_OVER_TIME_START]
-                if len(overtime_after_start) > 1:
-                    if len(time_list) % 2 != 0:
-                        # 存在18:30之后数据，且整天打卡次数为奇数
-                        row[ORIGIN_COLUMN_COMMENT].value += "平时奇数次打卡；"
-
+                    # 加班时间修正为：18:30和最后一次打卡时间
+                    overtime_list = [TIME_WEEKDAY_OVER_TIME_START, time_list_after_work[-1]]
+            else:
+                time_list_after_work = []
+            logger.info("weekday over time origin vs fix: %s -- %s", time_list_after_work, overtime_list)
             row[ORIGIN_COLUMN_OVER_TIME].value = "; ".join(overtime_list)
 
     file_calc_origin = os.path.join(os.getcwd(), FILE_DIR, FILE_PRE)
